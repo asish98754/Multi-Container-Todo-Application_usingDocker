@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Todo List</h1>
+
+    <!-- Add Todo Form -->
+    <form method="POST" action="/add">
+        <input type="text" name="task" placeholder="Add a new task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- Display Todos -->
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Completed</th>
+                <th>Actions</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+            <tr>
+                <!-- Update Form -->
+                <form method="POST" action="/update/{{ todo._id }}">
+                    <td>
+                        <input type="text" name="task" value="{{ todo.task }}" required>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %}>
+                    </td>
+                    <td>
+                        <button type="submit">Update</button>
+                    </td>
+                </form>
+        
+                <!-- Delete Form -->
+               
+                <td>
+                    <form method="POST" action="/delete/{{ todo._id }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
