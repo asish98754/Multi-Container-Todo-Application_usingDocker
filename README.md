@@ -81,6 +81,3 @@ Optional deployment trigger:
 - MongoDB URI in app config currently targets compose service name:
   - `mongodb://mongo:27017/todo_db`
 
-## License
-
-Add your preferred license here (for example, MIT).
